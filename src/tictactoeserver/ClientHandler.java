@@ -154,7 +154,6 @@ public class ClientHandler extends Thread{
                    System.out.println("Hello-----------" +  playerData.getUsername() + " Login successfully");
 
 
-
                    // Get the player's current score
                    int score = DAO.getScore(playerData.getUsername());
                    playerData.setScore(score);
@@ -219,7 +218,9 @@ public class ClientHandler extends Thread{
                     challengerHandler.sendJSONResponse(notification);
                 }
                 break;
-                
+            case "forfeitGameReq":                
+                GameManager.handleGameForfeit(this);
+                break;
             case "gameMove":
                 System.out.println(jsonMsg.get("symbol"));
                 GameManager.handleMove(this, jsonMsg);
@@ -231,7 +232,7 @@ public class ClientHandler extends Thread{
                 broadcastOnlineList();
                 
                 break; 
-                case "serverShutdown": 
+            case "serverShutdown": 
                 System.out.println("Server is shutting down. Disconnecting...");
                 // Notify the client that the server is shutting down
                 Map<String, String> shutdownMsg = new HashMap<>();

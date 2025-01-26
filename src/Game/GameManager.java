@@ -243,6 +243,38 @@ public class GameManager {
         }
     
     }
+    
+    public static void handleGameForfeit(ClientHandler disconnectedPlayer) {
+        
+        String sessionId = findSessionId(disconnectedPlayer);
+        
+        if(sessionId != null){
+            GameSession session = activeSessions.get(sessionId);
+            ClientHandler opponent = session.player1.equals(disconnectedPlayer) ? session.player2: session.player1;
+            
+            JSONObject disconnectNotification  = new JSONObject();
+            disconnectNotification.put("type", "gameForfeit");
+            disconnectNotification.put("message", "Your opponent has forfeit the game");
+            opponent.sendMessage(disconnectNotification.toJSONString());
+            disconnectedPlayer.sendMessage(disconnectNotification.toJSONString());
+            System.out.println("we are at handleGameForfeit");
+            activeSessions.remove(sessionId);
+            gamePlayers.remove(disconnectedPlayer.playerData.getUsername());
+            gamePlayers.remove(opponent.playerData.getUsername());
+            controlerUI.removeInGamePlayer(disconnectedPlayer.playerData.getUsername());
+            controlerUI.removeInGamePlayer(opponent.playerData.getUsername());
+            ClientHandler.onlinePlayers.add(session.player1.playerData.getUsername());
+            ClientHandler.onlinePlayers.add(session.player2.playerData.getUsername());
+            
+            new Thread(() -> {
+                synchronized (ClientHandler.clients) {
+                    ClientHandler.broadcastOnlineList();
+                }
+            }).start();
+        }
+    
+    }
+    
     private static void checkGameEnd(GameSession session) {
     String winner = checkWinner(session.board);
     System.out.println("Checking game end. Winner: " + winner);
