@@ -21,7 +21,7 @@ The Tic Tac Toe Server manages game sessions for a multiplayer Tic Tac Toe appli
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/MasameEh/TicTacToe_Server
    ```
 2. Navigate to the server directory:
    ```bash
