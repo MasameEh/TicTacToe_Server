@@ -52,6 +52,9 @@ The Tic Tac Toe Server manages game sessions for a multiplayer Tic Tac Toe appli
 
 1. Start the server.
 2. Monitor server logs in the console for player connections and game activities.
+3. Create a Client after cloning the client repo
+   Link: https://github.com/MasameEh/TicTacToe_Client
+      
 
 
 
