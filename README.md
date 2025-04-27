@@ -5,7 +5,7 @@
 The Tic Tac Toe Server manages game sessions for a multiplayer Tic Tac Toe application. It handles player connections, manages active game sessions, and facilitates communication between players during a game.
 ## 📽️ Demo Video
 
-🎥 Watch the gameplay demo [here](https://drive.google.com/drive/folders/1B10p21ZcbYSJCbKOunbIgMJIv82Dzlrl?usp=sharing).
+🎥 Watch the gameplay demo [here](https://drive.google.com/file/d/1KTtxKWfwyMIGt4aEWlRbUVCBtqSERr5z/view?usp=sharing).
 ## Features
 
 - Handles player login and registration.
